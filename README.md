@@ -17,3 +17,6 @@ To use the calculator, simply open the `calculator.html` file in a web browser. 
 ## Customization
 
 If you want to customize the calculator's appearance, you can modify the CSS styles in the `<style>` section of the HTML file. You can change the colors, fonts, and dimensions to match your preferences.
+
+##P Preview
+![Calculator preview](preview.png)
