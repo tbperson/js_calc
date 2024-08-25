@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <style>
+        h1,
+        p {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-size: 24px; 
+        }
+
+        body {
+            background-image: url("https://images5.alphacoders.com/133/1337398.png");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            width: 60vw;
+            height: 80vh;
+            border: 3px solid black;
+            background-color: lightgray;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(6, 1fr); 
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .small-box {
+            background-color: lightblue;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+        }
+
+        .text-box {
+            grid-column: 1 / span 4; 
+            border: 2px solid black;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            padding: 10px;
+        }
+        .text-box2 {
+            grid-column: 1 / span 4; 
+            background-color: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            padding: 10px;
+        }
+
+        /* Add the CSS rules to style the buttons */
+        .small-box:nth-child(16),
+        .small-box:nth-child(18) {
+            background-color: orange;
+        }
+
+        .small-box:nth-child(7),
+        .small-box:nth-child(11),
+        .small-box:nth-child(15),
+        .small-box:nth-child(19) {
+            background-color: green;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="text-box2">
+            <h1>Tyler's Calculator</h1>
+        </div>
+        <div class="text-box">
+        </div>
+        <script>
+            let contents = ['1', '2', '3', '+', '4', '5', '6', '-', '7', '8', '9', '*', 'C', '0', '=', '/'];
+
+        
+            const box = document.querySelector('.box');
+
+            let pressedCharacters = '';
+
+            contents.forEach(content => {
+    
+                const button = document.createElement('button');
+                button.classList.add('small-box');
+                button.textContent = content;
+                
+                
+                button.addEventListener('click', () => {
+                    if (pressedCharacters.length === 48){
+                        try {
+                            pressedCharacters = eval(pressedCharacters); 
+                            alert("Box full")
+                        } catch (error) {
+                            alert("Error")   
+                            pressedCharacters = 'Error'; 
+                        } 
+                    }
+                    else{
+                        if (content === 'C') {
+                            pressedCharacters = ''; // Clear the string
+                        } 
+                        else if (content === '=') {
+                            try {
+                                pressedCharacters = eval(pressedCharacters); 
+                
+                            } catch (error) {
+                                pressedCharacters = 'Error'; 
+                            }
+                        }
+                        else {
+                            pressedCharacters += content;
+                        }
+                        document.querySelector('.text-box').textContent = pressedCharacters;
+                    }
+                });
+            
+                box.appendChild(button);
+            });
+
+        </script>
+    </div>
+</body>
+
+</html>
